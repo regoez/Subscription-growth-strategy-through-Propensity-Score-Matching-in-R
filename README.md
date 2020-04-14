@@ -13,5 +13,6 @@ This Highnote code includes code work for below
   - and find odds ratio to measure impact of each significant factor
   
   
-Dataset is not provided with this code.
+Dataset is NOT provided with this code.
+
 Disclaimer: This analysis is produced for a case study and it is not a representation of any real company.
