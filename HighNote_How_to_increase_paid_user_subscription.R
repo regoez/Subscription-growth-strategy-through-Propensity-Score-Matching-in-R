@@ -1,4 +1,4 @@
-hn <- read.csv("/Users/minz/Desktop/Customer Analytics/Midterm/HighNote Data Midterm.csv", header = TRUE)
+hn <- read.csv("/Users/filepath/Desktop/Customer Analytics/HighNote_Data.csv", header = TRUE)
 head(hn)
 
 #Pre-work: Installing and loading packages
@@ -26,17 +26,17 @@ hn <- hn[,-1]
 
 head(hn)
 #3. Subsetting
-#1) adopter only df
+#1) paying user only df
 ad <- hn %>% filter(adopter == 1)
 ad <- ad[,-c(12)]
 head(ad)
 
-#2) non-adopter only df
+#2) non-paying user only df
 nad <- hn %>% filter(adopter == 0)
 nad <- nad[,-c(12)]
 head(nad)
 
-#Question 1: Descriptive statistics
+#Descriptive statistics
 #install.packages("pastecs")
 library(pastecs)
 stat.desc(ad)
@@ -94,7 +94,7 @@ corrplot(N, type="lower", order="hclust", main = "Free Users", mar=c(0,0,2,0),
 
 
 #1. Demographics
-#adopter vs freeuser comparison
+#paiduser vs freeuser comparison
 age <- ggplot(hn, aes(x = adopter, y = age)) + geom_boxplot() + labs(title = "Age") + theme(plot.title = element_text(hjust = 0.5))
 age
 
@@ -108,7 +108,6 @@ GC <- ggplot(hn,aes(x=adopter,group=good_country,fill = factor(good_country)))+
 GC
 
 #2. User Engagement
-
 #adopter vs freeuser comparison
 
 #3. Peer influence
