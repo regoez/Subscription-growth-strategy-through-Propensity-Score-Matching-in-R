@@ -1,4 +1,4 @@
-hn <- read.csv("/Users/filepath/Desktop/Customer Analytics/HighNote_Data.csv", header = TRUE)
+hn <- read.csv("/Users/filepath/Midterm/data.csv", header = TRUE)
 head(hn)
 
 #Pre-work: Installing and loading packages
@@ -26,17 +26,17 @@ hn <- hn[,-1]
 
 head(hn)
 #3. Subsetting
-#1) paying user only df
+#1) adopter only df
 ad <- hn %>% filter(adopter == 1)
 ad <- ad[,-c(12)]
 head(ad)
 
-#2) non-paying user only df
+#2) non-adopter only df
 nad <- hn %>% filter(adopter == 0)
 nad <- nad[,-c(12)]
 head(nad)
 
-#Descriptive statistics
+#Question 1: Descriptive statistics
 #install.packages("pastecs")
 library(pastecs)
 stat.desc(ad)
@@ -94,7 +94,7 @@ corrplot(N, type="lower", order="hclust", main = "Free Users", mar=c(0,0,2,0),
 
 
 #1. Demographics
-#paiduser vs freeuser comparison
+#adopter vs freeuser comparison
 age <- ggplot(hn, aes(x = adopter, y = age)) + geom_boxplot() + labs(title = "Age") + theme(plot.title = element_text(hjust = 0.5))
 age
 
@@ -108,6 +108,7 @@ GC <- ggplot(hn,aes(x=adopter,group=good_country,fill = factor(good_country)))+
 GC
 
 #2. User Engagement
+
 #adopter vs freeuser comparison
 
 #3. Peer influence
@@ -170,8 +171,7 @@ summary(m_ps)
 
 vif(m_ps)
 
-# Using this model, we can now calculate the propensity score for each user. 
-# It is simply the user’s predicted probability of being Treated, given the estimates from the logit model.
+# With this model, propensity score for each user can be calculated :It is simply the user’s predicted probability of being Treated, given the estimates from the logit model.
 
 propensity <- data.frame(pr_score = predict(m_ps, type = "response"),
                      treatment = m_ps$model$treatment)
@@ -273,3 +273,4 @@ summary(glm_imp)
 exp(glm_imp$coefficients)
 
 
+# reference code work: https://sejdemyr.github.io/r-tutorials/statistics/tutorial8.html
